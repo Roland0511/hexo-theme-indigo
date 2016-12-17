@@ -56,6 +56,7 @@ archive_yearly: true
 share: true
 
 #是否开启打赏，关闭 reward: false
+#TODO 修改支付宝和微信二维码图片为自己
 reward:
   title: 谢谢大爷~
   wechat: /img/wechat.jpg     #微信，关闭设为 false
@@ -89,6 +90,7 @@ less:
     - source/css/style.less
 
 # 是否开启多说评论，填写你在多说创建的站点二级域名
+# TODO 到多说注册并修改为自己的二级域名
 duoshuo: ysblog
 # 使用 disqus 时关闭多说评论
 disqus_shortname: false
