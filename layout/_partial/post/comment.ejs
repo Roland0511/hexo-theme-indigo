@@ -1,25 +1,26 @@
-<% if (theme.duoshuo && post.comments){ %>
-<%- partial('duoshuo', {
-    key: post.slug,
-    title: post.title,
-    url: url
-  }) %>
-<% } %>
-
-<% if (post.comments && theme.disqus_shortname){ %>
-<section id="comments">
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = '<%=theme.disqus_shortname%>'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
+<!--//如果没使用 `comments: false` 关闭评论，则尝试加载评论 -->
+<% if (post.comments){ %>
+    <!--//配置中启用多说时，导入相应代码 -->
+    <% if (theme.duoshuo.on) { %>
+      <!--//导入duoshuo.ejs时，同时指定其中几个变量的内容。 -->
+      <%- partial('comments/duoshuo', {
+          key: post.slug,
+          title: post.title,
+          url: url
+          }) %>
+    <!--//配置中仅启用友言时，导入相应代码 -->
+    <% } else if (theme.youyan.on) { %>
+        <%- partial('comments/youyan') %>
+    <!--//配置中仅启用 Disqus 时，导入相应代码 -->
+    <% } else if (theme.disqus.on) { %>
+        <%- partial('comments/disqus', {
+            shortname: theme.disqus.shortname
+          }) %>
+    <!--//以上皆关闭且 Hexo 配置中设置了 disqus_shortname 时，导入相应代码 -->
+    <% } else if (config.disqus_shortname) { %>
+        <!--//文件分离和变量的使用，使代码能较好的兼容 Hexo 主配置 -->
+        <%- partial('comments/disqus', {
+            shortname: config.disqus_shortname
+          }) %>
+    <% } %>
 <% } %>

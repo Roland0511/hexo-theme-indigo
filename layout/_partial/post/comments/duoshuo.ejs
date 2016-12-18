@@ -4,5 +4,5 @@
 <script src="<%= url_for('/js/embed' + (cache ? '.min': '') + '.js?v=' + theme_version()) %>"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
-var duoshuoQuery = {short_name:'<%=theme.duoshuo %>', theme: 'none'}
+var duoshuoQuery = {short_name:'<%=theme.duoshuo.shortname%>', theme: 'none'};
 </script>
