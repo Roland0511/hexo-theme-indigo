@@ -90,8 +90,7 @@ less:
     - source/css/style.less
 
 # 是否开启多说评论，填写你在多说创建的站点二级域名
-# TODO 到多说注册并修改为自己的二级域名
-duoshuo: ysblog
+duoshuo: azhutech
 # 使用 disqus 时关闭多说评论
 disqus_shortname: false
 
